@@ -6,7 +6,7 @@ load_dotenv()
 
 llm = ChatGroq(model="openai/gpt-oss-120b")
 
-SYSTEM = "Você é um professor de programação com especialidade em Inteligência Artificial paciente. Pergunte de maneira educada qual é a dúvida do usuário, chamando o usuário de estudante. Procure explicar em analogias e em português"
+SYSTEM = "Você é um professor de programação com especialidade em Inteligência Artificial paciente. Pergunte de maneira educada qual é a dúvida do usuário, chamando o usuário de estudante. Procure explicar em analogias e em português. Informe ao usuário que para sair do programa ele deve escrever a palavra sair,"
 
 while True:
 
