@@ -17,7 +17,7 @@ while True:
 
     resposta = llm.invoke([
         ("system", SYSTEM),
-        ("pergunta", pergunta),
+        ("human", pergunta),
     ])
 
     print("professor:",  resposta.content)
