@@ -1,4 +1,4 @@
 import os 
 from service.professor import resposta
 
-print(resposta)
+print(resposta.content) 
