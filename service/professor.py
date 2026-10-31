@@ -1,6 +1,7 @@
 import os 
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
+from service.historico import carregar_historico, salvar_historico
 
 
 load_dotenv()   
@@ -13,7 +14,7 @@ def conversar():
 
     print("Iniciando a conversa com seu professor tech de inteligência artificial! Para sair do programa, basta digitar 'sair'.")
 
-    historico = [("system", SYSTEM)]    
+    historico = carregar_historico(SYSTEM)
 
     while True:
 
@@ -26,8 +27,7 @@ def conversar():
 
         resposta = llm.invoke(historico) # resposta com base no histórico
 
-        historico.append(("ai",resposta.content))
-
-    
+        historico.append(("ai", resposta.content))
+        salvar_historico(historico)
 
         print("professor:",  resposta.content)
