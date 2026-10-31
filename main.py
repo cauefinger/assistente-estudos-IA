@@ -1,4 +1,4 @@
 import os 
-from service.professor import resposta
+from service.professor import conversar
 
-print(resposta.content) 
+conversar()

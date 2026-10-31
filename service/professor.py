@@ -7,20 +7,24 @@ load_dotenv()
 
 llm = ChatGroq(model="openai/gpt-oss-120b")
 
-SYSTEM = "Você é um professor de programação com especialidade em Inteligência Artificial paciente.  Procure explicar em analogias e em português. Informe ao usuário que para sair do programa ele deve escrever a palavra sair. Não diga olá nem cumprimente, faça isso apenas se o usuário cumprimentar. Você deve tirar as dúvidas"
+SYSTEM = "Você é um professor de programação com especialidade em Inteligência Artificial paciente.  Procure explicar em português. Não diga olá nem cumprimente, faça isso apenas se o usuário cumprimentar. Você deve tirar as dúvidas"
 
-while True:
+def conversar():
 
-    pergunta = input("Você: ")
+    print("Iniciando a conversa com seu professor tech de inteligência artificial! Para sair do programa, basta digitar 'sair'.")
+    
+    while True:
 
-    if pergunta.lower() == "sair":
-        break
+        pergunta = input("Você: ")
+
+        if pergunta.lower() == "sair":
+            break
 
         # "invocar" LLM e adicionar as tuplas.
 
-    resposta = llm.invoke([
-        ("system", SYSTEM),
-        ("human", pergunta),
+        resposta = llm.invoke([
+            ("system", SYSTEM),
+            ("human", pergunta),
     ])
 
-    print("professor:",  resposta.content)
+        print("professor:",  resposta.content)
