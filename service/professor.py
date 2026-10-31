@@ -12,7 +12,9 @@ SYSTEM = "Você é um professor de programação com especialidade em Inteligên
 def conversar():
 
     print("Iniciando a conversa com seu professor tech de inteligência artificial! Para sair do programa, basta digitar 'sair'.")
-    
+
+    historico = [("system", SYSTEM)]    
+
     while True:
 
         pergunta = input("Você: ")
@@ -20,11 +22,12 @@ def conversar():
         if pergunta.lower() == "sair":
             break
 
-        # "invocar" LLM e adicionar as tuplas.
+        historico.append(("human", pergunta))
 
-        resposta = llm.invoke([
-            ("system", SYSTEM),
-            ("human", pergunta),
-    ])
+        resposta = llm.invoke(historico)
+
+        historico.append(("ai",resposta.content))
+
+    
 
         print("professor:",  resposta.content)
