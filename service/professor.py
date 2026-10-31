@@ -24,7 +24,7 @@ def conversar():
 
         historico.append(("human", pergunta))
 
-        resposta = llm.invoke(historico)
+        resposta = llm.invoke(historico) # resposta com base no histórico
 
         historico.append(("ai",resposta.content))
 
