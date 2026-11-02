@@ -6,3 +6,7 @@ class Pergunta(BaseModel):
     gabarito: str
     topico: str
 
+class Quiz(BaseModel):
+
+    perguntas: list[Pergunta]
+
