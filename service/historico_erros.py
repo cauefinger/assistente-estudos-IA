@@ -1,20 +1,28 @@
-from pathlib import Path     
+from datetime import datetime
+from pathlib import Path
 import json
 
 
 PASTA_DADOS = Path(__file__).resolve().parent.parent / "data"
 PASTA_DADOS.mkdir(exist_ok=True)
-ARQUIVO = PASTA_DADOS / "historico.json"
+ARQUIVO = PASTA_DADOS / "erros.json"
 
 
-def carregar_erros(system):
+def carregar_erros():
     if ARQUIVO.exists():
         with open(ARQUIVO, "r", encoding="utf-8") as f:
-            dados = json.load(f)
-        return [tuple(msg) for msg in dados]
-    return [("system", system)]
+            return json.load(f)
+    return []
 
 
-def salvar_erro_historico(historico):
+def salvar_erro_historico(questao, resposta_aluno):
+    erros = carregar_erros()
+    erros.append({
+        "topico": questao.topico,
+        "enunciado": questao.enunciado,
+        "sua_resposta": resposta_aluno,
+        "gabarito": questao.gabarito,
+        "data": datetime.now().isoformat(timespec="seconds"),
+    })
     with open(ARQUIVO, "w", encoding="utf-8") as f:
-        json.dump(historico, f, ensure_ascii=False, indent=2)
+        json.dump(erros, f, ensure_ascii=False, indent=2)
