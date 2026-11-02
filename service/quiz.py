@@ -7,6 +7,10 @@ class Pergunta(BaseModel):
     gabarito: str
     topico: str
 
+class Correcao(BaseModel):
+    correta: bool
+    explicacao: str
+
 class Quiz(BaseModel):
 
     perguntas: list[Pergunta]
@@ -20,3 +24,9 @@ def gerar_perguntas(tema, quantidade=5):
         "Para cada uma, dê o gabarito e o tópico específico.")
 
     return quiz.perguntas
+
+def corrigir_quiz(pergunta, gabarito, resposta):
+    juiz = llm.with_structured_output(Correcao)
+    return juiz.invoke(f"Pergunta: {pergunta}\nGabarito: {gabarito}\nResposta do aluno: {resposta}\n"
+        "Avalie se a resposta do aluno está correta."
+    )
