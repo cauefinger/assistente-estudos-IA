@@ -1,21 +1,7 @@
-from pydantic import BaseModel
 from service.llm import llm
 from service.historico_erros import salvar_erro_historico
-
-class Pergunta(BaseModel):
-
-    enunciado: str
-    gabarito: str
-    topico: str
-
-class Correcao(BaseModel):
-
-    correta: bool
-    explicacao: str
-
-class Quiz(BaseModel):
-
-    perguntas: list[Pergunta]
+from models.quiz import Quiz
+from models.correcao import Correcao
 
 def gerar_perguntas(tema, quantidade=5):
 
