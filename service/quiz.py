@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from service.llm import llm
 
 class Pergunta(BaseModel):
 

@@ -1,12 +1,11 @@
 import os 
 from dotenv import load_dotenv
-from langchain_groq import ChatGroq
 from service.historico import carregar_historico, salvar_historico
+from service.llm import llm
 
 
 load_dotenv()   
 
-llm = ChatGroq(model="openai/gpt-oss-120b")
 
 SYSTEM = "Você é um professor de programação com especialidade em Inteligência Artificial paciente.  Procure explicar em português. Não diga olá nem cumprimente, faça isso apenas se o usuário cumprimentar. Você deve tirar as dúvidas"
 
