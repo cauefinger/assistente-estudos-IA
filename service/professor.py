@@ -1,4 +1,3 @@
-import os 
 from dotenv import load_dotenv
 from service.historico import carregar_historico, salvar_historico
 from service.llm import llm
