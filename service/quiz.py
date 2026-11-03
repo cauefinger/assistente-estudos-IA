@@ -29,7 +29,7 @@ def iniciar_quiz(tema):
     for questao in perguntas:
 
         resposta_aluno = input(f"{questao.enunciado}\n> ") # print "o que é overtting, por exemplo"
-        correcao = corrigir_quiz(questao.enunciado, questao.gabarito, resposta_aluno)
+        correcao = corrigir_quiz(questao.enunciado, questao.gabarito, resposta_aluno) # unica coisa que pegamos é a resposta do aluno. O resto, a IA gera.
 
         if correcao.correta:
             numero_acertos += 1
