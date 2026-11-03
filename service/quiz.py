@@ -5,7 +5,6 @@ from models.correcao import Correcao
 
 def gerar_perguntas(tema, quantidade=5):
 
-
     gerador = llm.with_structured_output(Quiz)
     quiz = gerador.invoke(f"Crie {quantidade} perguntas curtas sobre {tema} para um estudante de programação. "
         "Para cada uma, dê o gabarito e o tópico específico.")
@@ -26,7 +25,7 @@ def iniciar_quiz(tema):
 
     for questao in perguntas:
 
-        resposta_aluno = input(f"{questao.enunciado}\n> ")
+        resposta_aluno = input(f"{questao.enunciado}\n> ") # print "o que é overtting, por exemplo"
         correcao = corrigir_quiz(questao.enunciado, questao.gabarito, resposta_aluno)
 
         if not correcao.correta:
