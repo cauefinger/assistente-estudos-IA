@@ -12,7 +12,7 @@ SYSTEM = "Você é um professor de programação com especialidade em Inteligên
 
 def conversar():
 
-    print("Iniciando a conversa com seu professor tech de inteligência artificial! Para sair do programa, basta digitar 'sair'. Para um quiz, digite '/quiz tema'.")
+    print("Iniciando a conversa com seu professor tech de inteligência artificial! Para sair do programa, basta digitar 'sair'. Para um quiz, digite '/quiz tema', e para verificar os erros e pontos para melhorar, digite um '/erros'!")
 
     historico = carregar_historico(SYSTEM)
 
