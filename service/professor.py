@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from service.historico import carregar_historico, salvar_historico
 from service.llm import llm
 from service.quiz import iniciar_quiz
-
+from service.historico_erros import carregar_erros
 
 load_dotenv()   
 
@@ -31,6 +31,17 @@ def conversar():
                 iniciar_quiz(tema)
             continue
 
+        if entrada.lower() == "/erros":
+
+            erros = carregar_erros()
+            resposta = llm.invoke(f"Você tem os seguintes erros registrados do usuário: {erros}. \n Preciso que você monte uma avaliação com base nesses erros e esclareça onde ele tem que melhorar.")
+            print(f"Professor: ", resposta.content)
+            continue
+
+        if not erros:
+            print("Você não tem erros registrados ainda. Faça um /quiz para testar seus conhecimentos na área!")
+            continue
+        
         historico.append(("human", entrada))
 
         resposta = llm.invoke(historico) # resposta com base no histórico
@@ -39,3 +50,4 @@ def conversar():
         salvar_historico(historico)
 
         print("professor:",  resposta.content)
+
