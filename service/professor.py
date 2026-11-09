@@ -30,7 +30,7 @@ def conversar():
                 iniciar_quiz(tema)
             continue
 
-        if entrada.lower() == "/erros":
+        if entrada.lower().strip() ==  ("/erros"):
 
             erros = carregar_erros()
 
