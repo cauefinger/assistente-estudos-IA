@@ -17,7 +17,7 @@ def conversar():
 
     while True:
 
-        entrada = input("Você: ")
+        entrada = input("Você: ").strip()
 
         if entrada.lower().strip() == "sair":
             break
