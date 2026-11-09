@@ -24,9 +24,13 @@ def conversar():
 
         if entrada.lower().strip().startswith("/quiz"):
             tema = entrada[5:].strip()
+
             if not tema:
+
                 print("Informe o tema, por exemplo: /quiz redes neurais")
+                
             else:
+
                 iniciar_quiz(tema)
             continue
 
@@ -35,12 +39,20 @@ def conversar():
             erros = carregar_erros()
 
             if not erros:
+
                 print("Você não tem erros registrados ainda. Faça um /quiz para testar seus conhecimentos na área!")
                 continue
 
-            resposta = llm.invoke(f"Você tem os seguintes erros registrados do usuário: {erros}. \n Preciso que você monte uma avaliação com base nesses erros e esclareça onde ele tem que melhorar.")
+            try:
+
+                resposta = llm.invoke(f"Você tem os seguintes erros registrados do usuário: {erros}. \n Preciso que você monte uma avaliação com base nesses erros e esclareça onde ele tem que melhorar.")
+
+            except Exception as e:
+
+                print(f"Não consegui falar com o professor agora({type(e).__name__}). Tente novamente mais tarde até que o problema seja solucionado.")
+                continue
+            
             print(f"Professor: ", resposta.content)
-            continue
 
 
         historico.append(("human", entrada))
