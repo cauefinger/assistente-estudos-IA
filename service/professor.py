@@ -19,10 +19,10 @@ def conversar():
 
         entrada = input("Você: ")
 
-        if entrada.lower() == "sair":
+        if entrada.lower().strip() == "sair":
             break
 
-        if entrada.lower().startswith("/quiz"):
+        if entrada.lower().strip().startswith("/quiz"):
             tema = entrada[5:].strip()
             if not tema:
                 print("Informe o tema, por exemplo: /quiz redes neurais")
