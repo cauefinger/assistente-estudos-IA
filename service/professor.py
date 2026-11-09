@@ -33,14 +33,16 @@ def conversar():
         if entrada.lower() == "/erros":
 
             erros = carregar_erros()
+
+            if not erros:
+                print("Você não tem erros registrados ainda. Faça um /quiz para testar seus conhecimentos na área!")
+                continue
+
             resposta = llm.invoke(f"Você tem os seguintes erros registrados do usuário: {erros}. \n Preciso que você monte uma avaliação com base nesses erros e esclareça onde ele tem que melhorar.")
             print(f"Professor: ", resposta.content)
             continue
 
-        if not erros:
-            print("Você não tem erros registrados ainda. Faça um /quiz para testar seus conhecimentos na área!")
-            continue
-        
+
         historico.append(("human", entrada))
 
         resposta = llm.invoke(historico) # resposta com base no histórico
