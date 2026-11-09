@@ -9,10 +9,14 @@ ARQUIVO = PASTA_DADOS / "erros.json"
 
 
 def carregar_erros():
-    if ARQUIVO.exists():
+    if not ARQUIVO.exists():
+        return []
+    try:
         with open(ARQUIVO, "r", encoding="utf-8") as f:
             return json.load(f)
-    return []
+    except json.JSONDecodeError:
+        print("Aviso: erros.json está corrompido. Começando uma lista vazia.")
+        return []
 
 
 def salvar_erro_historico(questao, resposta_aluno):
