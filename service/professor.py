@@ -55,6 +55,11 @@ def conversar():
             print(f"Professor: ", resposta.content)
 
 
+
+
+        # tratar todo aqui
+
+
         historico.append(("human", entrada))
 
         resposta = llm.invoke(historico) # resposta com base no histórico
