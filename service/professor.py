@@ -58,14 +58,22 @@ def conversar():
 
 
         # tratar todo aqui
+        # except 1: timeouterror 
+        # ecept 2: exeppt as error
 
 
-        historico.append(("human", entrada))
+        try:
+            historico.append(("human", entrada))
 
-        resposta = llm.invoke(historico) # resposta com base no histórico
+            resposta = llm.invoke(historico) # resposta com base no histórico
 
-        historico.append(("ai", resposta.content))
-        salvar_historico(historico)
+            historico.append(("ai", resposta.content))
+            salvar_historico(historico)
 
-        print("professor:",  resposta.content)
+            print("professor:",  resposta.content)
 
+        except TimeoutError:
+            print("A IA de professor está demorando demais para responder. Tente novamente mais tarde!")
+
+        except Exception as error:
+            print(f"Erro inesperado encontrado. {error}. Tente novamente mais tarde! ")
