@@ -54,9 +54,6 @@ def conversar():
             
             print(f"Professor: ", resposta.content)
 
-
-
-
         try:
             historico.append(("human", entrada))
 
