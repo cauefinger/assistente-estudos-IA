@@ -57,11 +57,6 @@ def conversar():
 
 
 
-        # tratar todo aqui
-        # except 1: timeouterror 
-        # ecept 2: exeppt as error
-
-
         try:
             historico.append(("human", entrada))
 
